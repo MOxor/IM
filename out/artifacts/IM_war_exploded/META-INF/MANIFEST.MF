@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: im
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: MO_or
+Implementation-Vendor-Id: com.moxor
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.8.0_11
+Main-Class: ${start-class}
+

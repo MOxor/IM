@@ -1,0 +1,62 @@
+server:
+  port: 8081
+  tomcat:
+    basedir: .
+    # 配置Server的Access日志和运行日志打印
+    accesslog:
+      enabled: true
+      directory: /export/logs/example/
+      pattern: "%{X-Forwarded-For}i %a %{X-B3-TraceId}i %t %m %U %s %b %D"
+      rename-on-rotate: true
+      suffix: .log
+      prefix: access
+      rotate: true
+      buffered: false
+      file-date-format: yyyy-MM-dd
+    #配置Tomcat连接池
+    initial-size: 20
+    max-idle: 20
+    min-idle: 5
+    max-active: 100
+    log-abandoned: true
+    remove-abandoned: true
+    remove-abandoned-timeout: 180
+    max-wait: 1000
+  #配置dbcp2连接池
+  dbcp2:
+    pool-prepared-statements: true
+
+spring:
+  #基本信息
+  info:
+    businessSide: JAVA开发部
+    serviceName: Modena
+    version: 1.0
+    spring-boot.version: 2.1.3.RELEASE
+    spring-cloud.version: null
+    author: MO_or
+
+  application:
+    name: server
+
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/MOxor?serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+
+  #Spring MVC配置
+  mvc:
+    view:
+      prefix: /WEB-INF/test/
+      suffix: .jsp
+
+# 输出SQL日志
+logging:
+  level:
+    com.im.dao: debug
+
+# mybatis配置
+mybatis:
+  type-aliases-package: com.im.entity
+  mapper-locations: classpath:mapper/*Mapper.xml

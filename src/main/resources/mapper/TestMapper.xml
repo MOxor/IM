@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.im.mapper.TestMapper">
+    <resultMap id="TestResultMap" type="com.im.entity.TestObject" >
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result property="testCotent" column="testCotent"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.im.entity.TestObject" >
+        insert into test (id, testContent
+        )
+        values (#{testObject.id,jdbcType=VARCHAR}, #{testObject.testContent,jdbcType=VARCHAR}
+        )
+    </insert>
+
+</mapper>
