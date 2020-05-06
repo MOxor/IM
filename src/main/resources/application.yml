@@ -1,32 +1,55 @@
 server:
   port: 8081
-  tomcat:
-    basedir: .
-    # 配置Server的Access日志和运行日志打印
-    accesslog:
-      enabled: true
-      directory: /export/logs/example/
-      pattern: "%{X-Forwarded-For}i %a %{X-B3-TraceId}i %t %m %U %s %b %D"
-      rename-on-rotate: true
-      suffix: .log
-      prefix: access
-      rotate: true
-      buffered: false
-      file-date-format: yyyy-MM-dd
-    #配置Tomcat连接池
-    initial-size: 20
-    max-idle: 20
-    min-idle: 5
-    max-active: 100
-    log-abandoned: true
-    remove-abandoned: true
-    remove-abandoned-timeout: 180
-    max-wait: 1000
-  #配置dbcp2连接池
-  dbcp2:
-    pool-prepared-statements: true
+#  #配置Tomcat连接池
+#  tomcat:
+#    basedir: .
+#    # 配置Server的Access日志和运行日志打印
+#    accesslog:
+#      enabled: true
+#      directory: /export/logs/example/
+#      pattern: "%{X-Forwarded-For}i %a %{X-B3-TraceId}i %t %m %U %s %b %D"
+#      rename-on-rotate: true
+#      suffix: .log
+#      prefix: access
+#      rotate: true
+#      buffered: false
+#      file-date-format: yyyy-MM-dd
+#    initial-size: 20
+#    max-idle: 20
+#    min-idle: 5
+#    max-active: 100
+#    log-abandoned: true
+#    remove-abandoned: true
+#    remove-abandoned-timeout: 180
+#    max-wait: 1000
+#  #配置dbcp2连接池
+#  dbcp2:
+#    pool-prepared-statements: true
 
 spring:
+  datasource:
+    #配置druid连接池
+    druid:
+      username: root
+      password: root
+      url: jdbc:mysql://localhost:3306/MOxor?serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
   #基本信息
   info:
     businessSide: JAVA开发部
@@ -38,12 +61,6 @@ spring:
 
   application:
     name: server
-
-  datasource:
-    username: root
-    password: root
-    url: jdbc:mysql://localhost:3306/MOxor?serverTimezone=UTC
-    driver-class-name: com.mysql.jdbc.Driver
 
   #Spring MVC配置
   mvc:
