@@ -6,4 +6,6 @@ import com.im.entity.TestObject;
 public interface ITestService {
 
     int insert(TestObject testObject);
+
+    void testSlf4j();
 }

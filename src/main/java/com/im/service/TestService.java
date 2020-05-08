@@ -2,6 +2,7 @@ package com.im.service;
 
 import com.im.mapper.TestMapper;
 import com.im.entity.TestObject;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
  * @author: MO_or
  * @create: 2020-04- 16:01
  **/
+@Slf4j
 public class TestService {
 
     @Resource
@@ -53,10 +55,15 @@ public class TestService {
 
         List arr = new ArrayList();
         List arr1 = new ArrayList(12);
-        List arr2 = new ArrayList(-1);
+        // List arr2 = new ArrayList(-1);
         arr.add(1);
         arr1.add(2);
-        arr2.add(3);
+        // arr2.add(3);
         arr.add(1);
+
+        log.info("info");
+        log.debug("debug");
+        log.error("error");
+
     }
 }

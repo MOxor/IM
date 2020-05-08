@@ -2,6 +2,7 @@ package com.im.controller;
 
 import com.im.entity.TestObject;
 import com.im.service.ITestService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
  * @author: MO_or
  * @create: 2020-04- 11:12
  **/
+@Slf4j
 @Controller
 @RequestMapping("/test")
 public class TestController {
@@ -26,7 +28,11 @@ public class TestController {
 
     @RequestMapping(value = "/insert")
     public void createUser(TestObject testObject, HttpServletResponse response) throws IOException {
-        System.out.println(testService.insert(testObject));
+        log.info("info");
+        log.debug("debug");
+        log.error("error");
+        testService.testSlf4j();
+        // System.out.println(testService.insert(testObject));
         // System.out.println("test insert");
     }
 }

@@ -68,10 +68,14 @@ spring:
       prefix: /WEB-INF/test/
       suffix: .jsp
 
-# 输出SQL日志
+# 输出日志
 logging:
   level:
-    com.im.dao: debug
+    com.im.service: error
+    com.im.controller: debug
+  file:
+    path: ./log
+  root: info
 
 # mybatis配置
 mybatis:
